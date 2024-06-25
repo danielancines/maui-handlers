@@ -9,6 +9,10 @@ namespace Maui.HandlersApp
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .ConfigureMauiHandlers(handlers =>
+                {
+                    handlers.AddHandler(typeof(MyTreeView), typeof(TreeViewHandler));
+                })
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -16,7 +20,7 @@ namespace Maui.HandlersApp
                 });
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();
